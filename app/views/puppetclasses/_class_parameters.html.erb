@@ -23,7 +23,7 @@
         <%= lookup_key_with_diagnostic(obj, lookup_key, lookup_value) %>
         <span class="input-group-btn">
           <%= hidden_toggle(lookup_key.hidden_value?, 'font', 'font', true) if lookup_key.hidden_value? %>
-          <%= fullscreen_button("$(this).parent().prev()") unless lookup_key.key_type == "boolean" %>
+          <%= fullscreen_button("$(this).parent().prev()") unless (lookup_key.key_type == "boolean" || (!lookup_key.validator_rule.blank? && lookup_key.validator_type == "list")) %>
           <%= override_toggle(overridden) %>
         </span>
       </div>

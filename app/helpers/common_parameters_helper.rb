@@ -58,7 +58,11 @@ module CommonParametersHelper
     when "integer", "real"
       number_field_tag(id, value, option_hash)
     else
-      text_area_tag(id, value, option_hash)
+      if lookup_key.validator_rule.blank? || lookup_key.validator_type != "list"
+        text_area_tag(id, value, option_hash)
+      else lookup_key.validator_type == "list"
+        select_tag(id, options_for_select(lookup_key.validator_rule.split(','), value), option_hash)
+      end
     end
   end
 

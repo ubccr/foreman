@@ -143,6 +143,10 @@ module ComputeResourcesVmsHelper
     security_groups.map{ |sg| [sg.name, sg.group_id] if sg.vpc_id == vpc_id}.compact
   end
 
+  def security_groups_names(security_groups)
+    security_groups.map{ |sg| [sg.name] }.compact
+  end
+
   def show_vm_name?
     controller_name != 'hosts' && controller_name != 'compute_attributes'
   end
